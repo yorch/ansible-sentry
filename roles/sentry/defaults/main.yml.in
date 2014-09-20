@@ -1,0 +1,22 @@
+---
+user_name: sentry
+group_name: sentry
+deploy_root: /opt/sentry
+virtualenv: "{{ deploy_root }}/virtualenv"
+conf_dir: "{{ deploy_root }}/conf"
+
+sentry_conf_file: "{{ conf_dir }}/sentry.conf.py"
+sentry_key: something
+sentry_url_prefix: http://something.com  # No trailing slash!
+sentry_email: sentry@something.com
+
+smtp_server: {smtp_server}
+smtp_user: {smtp_user}
+smtp_password: {smtp_password}
+smtp_port: {smtp_port}
+smtp_use_tls: {smtp_use_tls}
+
+db_host: localhost
+db_name: sentry
+db_user: sentry
+db_password: sentry

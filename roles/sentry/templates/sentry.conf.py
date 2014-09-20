@@ -19,10 +19,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         #'NAME': os.path.join(CONF_ROOT, 'sentry.db'),
-        'NAME': '{{db_name}}',
-        'USER': '{{db_user}}',
-        'PASSWORD': '{{db_password}}',
-        'HOST': '{{db_host}}',
+        'NAME': '{{ db_name }}',
+        'USER': '{{ db_user }}',
+        'PASSWORD': '{{ db_password }}',
+        'HOST': '{{ db_host }}',
         'PORT': '',
 
         # If you're using Postgres, we recommend turning on autocommit
@@ -89,7 +89,7 @@ CACHES = {
 ################
 
 # You MUST configure the absolute URI root for Sentry:
-SENTRY_URL_PREFIX = '{{root_url}}'  # No trailing slash!
+SENTRY_URL_PREFIX = '{{ sentry_url_prefix }}'  # No trailing slash!
 
 # If you're using a reverse proxy, you should enable the X-Forwarded-Proto
 # and X-Forwarded-Host headers, and uncomment the following settings
@@ -113,14 +113,14 @@ SENTRY_WEB_OPTIONS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = '{{smtp_server}}'
-EMAIL_HOST_PASSWORD = '{{smtp_password}}'
-EMAIL_HOST_USER = '{{smtp_user}}'
-EMAIL_PORT = {{smtp_port}}
-EMAIL_USE_TLS = {{smtp_use_tls}}
+EMAIL_HOST = '{{ smtp_server }}'
+EMAIL_HOST_PASSWORD = '{{ smtp_password }}'
+EMAIL_HOST_USER = '{{ smtp_user }}'
+EMAIL_PORT = {{ smtp_port }}
+EMAIL_USE_TLS = {{ smtp_use_tls }}
 
 # The email address to send on behalf of
-SERVER_EMAIL = '{{server_email}}'
+SERVER_EMAIL = '{{ sentry_email }}'
 
 ###########
 ## etc. ##
@@ -128,7 +128,7 @@ SERVER_EMAIL = '{{server_email}}'
 
 # If this file ever becomes compromised, it's important to regenerate your SECRET_KEY
 # Changing this value will result in all current sessions being invalidated
-SECRET_KEY = '{{secret_key}}'
+SECRET_KEY = '{{ sentry_key }}'
 
 # http://twitter.com/apps/new
 # It's important that input a callback URL, even if its useless. We have no idea why, consult Twitter.

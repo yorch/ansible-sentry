@@ -1,0 +1,12 @@
+---
+- name: Setup group
+  group: name={{ group_name }} state=present
+
+- name: Setup user
+  user: name={{ user_name }} state=present group={{ group_name }}
+
+- name: Ensure directories exist
+  file: state=directory path={{ item }} owner={{ user_name }} group={{ group_name }}
+  with_items:
+    - "{{ deploy_root }}"
+    - "{{ conf_dir }}"

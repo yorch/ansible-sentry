@@ -1,0 +1,25 @@
+---
+- name: Install sentry
+  shell: "{{ virtualenv }}/bin/easy_install -UZ sentry==6.4.4 creates={{ virtualenv }}/bin/sentry"
+
+- name: Install sentry.conf.py
+  template: src=sentry.conf.py dest={{ sentry_conf_file}}
+  notify:
+    - reload supervisor
+
+- name: Migrate sentry db
+  shell: "{{ virtualenv }}/bin/sentry --config={{ sentry_conf_file }} upgrade --noinput"
+
+- name: Remove default nginx conf
+  sudo_user: root
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Install sentry nginx conf
+  sudo_user: root
+  template: src=nginx-site.j2 dest=/etc/nginx/sites-enabled/sentry
+  notify: restart nginx
+
+- name: Install supervisor conf
+  sudo_user: root
+  template: src=supervisor.j2 dest=/etc/supervisor/conf.d/sentry.conf
+  notify: reload supervisor

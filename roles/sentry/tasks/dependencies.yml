@@ -1,0 +1,21 @@
+---
+- name: Install apt packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - nginx
+    - supervisor
+    - python-virtualenv
+    - memcached
+    - libmemcached-dev
+    - python-psycopg2
+    - python-dev
+    - postgresql-9.3
+    - postgresql-server-dev-9.3
+
+- name: Install pip packages
+  sudo_user: sentry
+  pip: name={{ item }} virtualenv={{ virtualenv }}
+  with_items:
+    - psycopg2
+    - python-memcached
+    - django-pylibmc

@@ -1,0 +1,6 @@
+---
+- name: Setup db
+  postgresql_db: name={{ db_name }}
+
+- name: Setup db user
+  postgresql_user: name={{ db_user }} password={{ db_password }} db={{ db_name }} priv=ALL role_attr_flags=SUPERUSER

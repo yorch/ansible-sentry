@@ -1,0 +1,10 @@
+---
+- include: user.yml
+
+- include: dependencies.yml
+
+- include: db.yml
+  sudo_user: postgres
+
+- include: sentry.yml
+  sudo_user: sentry

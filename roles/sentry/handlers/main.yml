@@ -1,0 +1,10 @@
+---
+- name: reload supervisor
+  supervisorctl: name=sentry-web state=restarted
+  notify: reload supervisor worker
+
+- name: reload supervisor worker
+  supervisorctl: name=sentry-worker state=restarted
+
+- name: restart nginx
+  service: name=nginx state=restarted
