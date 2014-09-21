@@ -1,14 +1,25 @@
 ---
+# - name: Install sentry
+#   shell: "{{ app_env }}/bin/easy_install -UZ sentry creates={{ app_env }}/bin/sentry"
+
 - name: Install sentry
-  shell: "{{ virtualenv }}/bin/easy_install -UZ sentry==6.4.4 creates={{ virtualenv }}/bin/sentry"
+  pip: name={{ item }} virtualenv={{ app_env }}
+  with_items:
+   - psycopg2
+   - python-memcached
+   - django-pylibmc
+   - sentry
+   - redis
+   - hiredis
+   - nydus
 
 - name: Install sentry.conf.py
-  template: src=sentry.conf.py dest={{ sentry_conf_file}}
+  template: src=sentry.conf.py dest={{ sentry_conf_file }} #owner={{ app_user }} group={{ app_group }}
   notify:
     - reload supervisor
 
 - name: Migrate sentry db
-  shell: "{{ virtualenv }}/bin/sentry --config={{ sentry_conf_file }} upgrade --noinput"
+  shell: "{{ app_env }}/bin/sentry --config={{ sentry_conf_file }} upgrade --noinput"
 
 - name: Remove default nginx conf
   sudo_user: root

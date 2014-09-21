@@ -1,6 +1,11 @@
 server {
     listen 80 default_server;
 
+    access_log  {{ app_log }}/nginx_access.log;
+    error_log   {{ app_log }}/nginx_error.log error;
+
+    client_max_body_size 10M;
+
     location / {
         proxy_pass         http://localhost:9000;
         proxy_redirect     off;

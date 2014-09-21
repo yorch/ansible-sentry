@@ -1,12 +1,13 @@
 ---
 - name: Setup group
-  group: name={{ group_name }} state=present
+  group: name={{ app_group }} state=present
 
 - name: Setup user
-  user: name={{ user_name }} state=present group={{ group_name }}
+  user: name={{ app_user }} state=present group={{ app_group }}
 
 - name: Ensure directories exist
-  file: state=directory path={{ item }} owner={{ user_name }} group={{ group_name }}
+  file: state=directory path={{ item }} owner={{ app_user }} group={{ app_group }}
   with_items:
-    - "{{ deploy_root }}"
-    - "{{ conf_dir }}"
+    - "{{ app_root }}"
+    - "{{ app_conf }}"
+    - "{{ app_log }}"

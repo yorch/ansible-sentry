@@ -60,7 +60,7 @@ CACHES = {
 
 # You can enable queueing of jobs by turning off the always eager setting:
 # CELERY_ALWAYS_EAGER = False
-# BROKER_URL = 'redis://localhost:6379'
+BROKER_URL = 'redis://localhost:6379'
 
 ####################
 ## Update Buffers ##
@@ -74,15 +74,15 @@ CACHES = {
 # You'll need to install the required dependencies for Redis buffers:
 #   pip install redis hiredis nydus
 #
-# SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
-# SENTRY_REDIS_OPTIONS = {
-#     'hosts': {
-#         0: {
-#             'host': '127.0.0.1',
-#             'port': 6379,
-#         }
-#     }
-# }
+SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
+SENTRY_REDIS_OPTIONS = {
+    'hosts': {
+        0: {
+            'host': '127.0.0.1',
+            'port': 6379,
+        }
+    }
+}
 
 ################
 ## Web Server ##
@@ -93,8 +93,8 @@ SENTRY_URL_PREFIX = '{{ sentry_url_prefix }}'  # No trailing slash!
 
 # If you're using a reverse proxy, you should enable the X-Forwarded-Proto
 # and X-Forwarded-Host headers, and uncomment the following settings
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 SENTRY_WEB_HOST = '0.0.0.0'
 SENTRY_WEB_PORT = 9000

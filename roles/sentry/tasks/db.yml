@@ -1,6 +1,21 @@
 ---
-- name: Setup db
-  postgresql_db: name={{ db_name }}
+# - name: Setup db
+#   postgresql_db: name={{ db_name }}
 
-- name: Setup db user
-  postgresql_user: name={{ db_user }} password={{ db_password }} db={{ db_name }} priv=ALL role_attr_flags=SUPERUSER
+# - name: Setup db user
+#   postgresql_user: name={{ db_user }} password={{ db_password }} db={{ db_name }} priv=ALL role_attr_flags=SUPERUSER
+
+- name: Setup db sentry
+  postgresql_db: name={{ db_name }}
+  sudo_user: postgres
+  sudo: yes
+
+- name: Setup db sentry user
+  postgresql_user: name={{ db_user }} password={{ db_password }} db={{ db_name }} priv=ALL
+  sudo_user: postgres
+  sudo: yes
+
+- name: Setup db sentry user roles
+  postgresql_user: name={{ db_user }} role_attr_flags=NOSUPERUSER,NOCREATEDB
+  sudo_user: postgres
+  sudo: yes

@@ -1,22 +1,27 @@
 ---
-user_name: sentry
-group_name: sentry
-deploy_root: /opt/sentry
-virtualenv: "{{ deploy_root }}/virtualenv"
-conf_dir: "{{ deploy_root }}/conf"
+app_user           : sentry
+app_group          : sentry
 
-sentry_conf_file: "{{ conf_dir }}/sentry.conf.py"
-sentry_key: something
-sentry_url_prefix: http://something.com  # No trailing slash!
-sentry_email: sentry@something.com
+app_root           : /srv/sentry
+app_env            : "{{ app_root }}/env"
+app_conf           : "{{ app_root }}/conf"
+app_log            : "/var/log/nginx/sentry"
 
-smtp_server: {smtp_server}
-smtp_user: {smtp_user}
-smtp_password: {smtp_password}
-smtp_port: {smtp_port}
-smtp_use_tls: {smtp_use_tls}
+# Sentry config
+sentry_conf_file   : "{{ app_conf }}/sentry.conf.py"
+sentry_key         : secret
+sentry_url_prefix  : http://something  # No trailing slash!
+sentry_email       : sentry@something.com
 
-db_host: localhost
-db_name: sentry
-db_user: sentry
-db_password: sentry
+# Email
+smtp_server        : localhost
+smtp_user          : ""
+smtp_password      : ""
+smtp_port          : 25
+smtp_use_tls       : False
+
+# Database
+db_host            : localhost
+db_name            : sentry
+db_user            : sentry
+db_password        : sentry
