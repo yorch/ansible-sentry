@@ -1,8 +1,8 @@
 server {
     listen 80 default_server;
 
-    access_log  {{ app_log }}/nginx_access.log;
-    error_log   {{ app_log }}/nginx_error.log error;
+    access_log  {{ app_log }}/access.log;
+    error_log   {{ app_log }}/error.log error;
 
     client_max_body_size 10M;
 

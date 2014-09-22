@@ -59,7 +59,7 @@ CACHES = {
 # on a Python framework called Celery to manage queues.
 
 # You can enable queueing of jobs by turning off the always eager setting:
-# CELERY_ALWAYS_EAGER = False
+CELERY_ALWAYS_EAGER = False
 BROKER_URL = 'redis://localhost:6379'
 
 ####################
@@ -74,15 +74,15 @@ BROKER_URL = 'redis://localhost:6379'
 # You'll need to install the required dependencies for Redis buffers:
 #   pip install redis hiredis nydus
 #
-SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
-SENTRY_REDIS_OPTIONS = {
-    'hosts': {
-        0: {
-            'host': '127.0.0.1',
-            'port': 6379,
-        }
-    }
-}
+# SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
+# SENTRY_REDIS_OPTIONS = {
+#     'hosts': {
+#         0: {
+#             'host': '127.0.0.1',
+#             'port': 6379,
+#         }
+#     }
+# }
 
 ################
 ## Web Server ##

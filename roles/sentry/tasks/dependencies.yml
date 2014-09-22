@@ -1,12 +1,12 @@
 ---
-- name: Updates apt cache
-  apt: update_cache=yes
+# - name: Updates apt cache
+#   apt: update_cache=yes
 
-- name: Upgrade existing apt packages
-  apt: upgrade=full
+# - name: Upgrade existing apt packages
+#   apt: upgrade=full
 
 - name: Install apt packages
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ item }} state=latest update_cache=yes
   with_items:
     - nginx
     - supervisor
@@ -17,5 +17,6 @@
     - python-psycopg2
     - memcached
     - libmemcached-dev
-    - postgresql-9.3
-    - postgresql-server-dev-9.3
+    - postgresql-9.1
+    - postgresql-server-dev-9.1
+    - redis-server
