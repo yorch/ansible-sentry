@@ -4,7 +4,7 @@
 - include: dependencies.yml
 
 - include: db.yml
-  sudo_user: postgres
+  become_user: postgres
 
 - include: sentry.yml
-  sudo_user: "{{ app_user }}"
+  become_user: "{{ app_user }}"

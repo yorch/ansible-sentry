@@ -1,5 +1,6 @@
 ---
-- hosts: sentry
-  sudo: yes
+- name: Sentry Server
+  hosts: sentry
+  become: yes
   roles:
     - sentry
