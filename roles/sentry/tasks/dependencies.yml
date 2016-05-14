@@ -17,6 +17,6 @@
     - python-psycopg2
     - memcached
     - libmemcached-dev
-    - postgresql-9.1
-    - postgresql-server-dev-9.1
+    - postgresql-9.3
+    - postgresql-server-dev-9.3
     - redis-server
